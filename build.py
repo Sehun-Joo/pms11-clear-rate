@@ -29,6 +29,22 @@ def main():
  for name,data in [('data.json',rows),('header.json',header),('summary.json',summary)]:
   (dist/name).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  (dist/'data.js').write_text('window.TABLE_DATA='+json.dumps(dict(rows=rows,buckets=BUCKETS,summary=summary),ensure_ascii=False).replace('<','\\u003c')+';\n',encoding='utf-8')
- (dist/'index.html').write_text((ROOT/'page.html').read_text(encoding='utf-8').replace('@@HEADER_URL@@',html.escape(url('header.json'),quote=True)),encoding='utf-8')
+ # Ship the full chart list in HTML so script failures cannot hide the table.
+ esc=lambda value:html.escape(str(value if value is not None else ''),quote=True)
+ def link(target,label):
+  return f'<a href="{esc(target)}" target="_blank" rel="noopener">{esc(label)} ↗</a>' if target and target.startswith(('https://','http://')) else ''
+ rendered=[]
+ for r in rows:
+  rate=f"{r['clear_rate']:.1f}%" if r['clear_rate'] is not None else 'No data'
+  players=f"{r['clear_users']} / {r['total_users']} players" if r['total_users'] is not None else 'Unknown'
+  small='<span class="tag">Small sample</span>' if r['total_users'] and r['total_users']<10 else ''
+  links=link(r['mocha_url'],'Mocha IR')+link(r.get('url'),'Song / package')+link(r.get('url_diff'),'Chart')
+  rendered.append(f'<tr><td><span class="badge">{esc(rate)}</span><span class="chart-meta">{esc(r["level"])}</span></td><td><div class="song-name">{esc(r["title"])}</div><span class="artist">{esc(r["artist"])}</span><span class="chart-name">{esc(r.get("name_diff"))}</span><span class="comment">{esc(r["comment"])}</span></td><td>{esc(players)}{small}</td><td><div class="links">{links}</div></td></tr>')
+ page=(ROOT/'page.html').read_text(encoding='utf-8').replace('@@HEADER_URL@@',esc(url('header.json')))
+ page=page.replace('<tbody id="rows"></tbody>','<tbody id="rows">'+''.join(rendered)+'</tbody>')
+ page=page.replace('<strong id="total"></strong>',f'<strong id="total">{len(rows)}</strong>').replace('<b id="rated"></b>',f'<b id="rated">{summary["rated"]}</b>')
+ page=page.replace('id="results" role="status" aria-live="polite"></p>',f'id="results" role="status" aria-live="polite">{len(rows)} charts · highest clear rate first</p>')
+ page=page.replace('<div class="toolbar">','<noscript><p>The full chart list is below. Enable JavaScript to use search and filters.</p></noscript><div class="toolbar">')
+ (dist/'index.html').write_text(page,encoding='utf-8')
  print(json.dumps(summary))
 if __name__=='__main__':main()
