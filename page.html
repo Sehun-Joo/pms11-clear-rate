@@ -1,10 +1,87 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="bmstable" content="@@HEADER_URL@@"><meta name="description" content="All PMS Database level 11 charts, grouped by Mocha IR per-play clear rate."><title>PMS ●11 · Clear-rate folders</title><link rel="stylesheet" href="style.css"><script defer src="data.js?v=play-rate"></script><script defer src="app.js?v=play-rate"></script></head>
-<body><header><div class="brand">PMS <span>●11</span> CLEAR RATE</div><a href="https://pmsdifficulty.xxxxxxxx.jp/insane_PMSdifficulty.html">Source table ↗</a></header><main>
-<div class="intro"><div><p class="eyebrow">ALL PMS DATABASE ●11 CHARTS</p><h1>Find your next clear.<br><span>Start with the higher rates.</span></h1><p class="description">Ten clear-rate bands, highest first.<br>Mocha IR play statistics · 23 October 2026.</p></div><div class="counts"><strong id="total"></strong><span>charts · <b id="rated"></b> with rates</span></div></div>
-<section aria-label="Chart table"><div class="toolbar"><label class="search">Song, artist or chart<input id="search" type="search" placeholder="Search all ●11 charts" autocomplete="off"></label><label>Clear-rate folder<select id="folder"><option value="">All folders</option></select></label><label>Sample size<select id="sample"><option value="0">All play counts</option><option value="10">At least 10 plays</option><option value="25">At least 25 plays</option><option value="50">At least 50 plays</option></select></label></div>
-<div class="table-caption"><p id="results" role="status" aria-live="polite"></p><p><a href="data.json">Table JSON</a> · <a href="header.json">Header</a></p></div>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="bmstable" content="@@HEADER_URL@@">
+<meta name="description" content="All PMS Database level 11 charts, grouped by Mocha IR per-play clear rate.">
+<title>PMS ●11 · Clear-rate folders</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="data.js?v=play-rate">
+</script>
+<script defer src="app.js?v=play-rate">
+</script>
+</head>
+<body>
+<header>
+<div class="brand">PMS <span>●11</span> CLEAR RATE</div>
+<a href="https://pmsdifficulty.xxxxxxxx.jp/insane_PMSdifficulty.html">Source table ↗</a>
+</header>
+<main>
+<div class="intro">
+<div>
+<p class="eyebrow">ALL PMS DATABASE ●11 CHARTS</p>
+<h1>Find your next clear.<br>
+<span>Start with the higher rates.</span>
+</h1>
+<p class="description">Ten clear-rate bands, highest first.<br>Mocha IR play statistics · 23 October 2026.</p>
+</div>
+<div class="counts">
+<strong id="total">
+</strong>
+<span>charts · <b id="rated">
+</b> with rates</span>
+</div>
+</div>
+<section aria-label="Chart table">
+<div class="toolbar">
+<label class="search">Song, artist or chart<input id="search" type="search" placeholder="Search all ●11 charts" autocomplete="off">
+</label>
+<label>Clear-rate folder<select id="folder">
+<option value="">All folders</option>
+</select>
+</label>
+<label>Sample size<select id="sample">
+<option value="0">All play counts</option>
+<option value="10">At least 10 plays</option>
+<option value="25">At least 25 plays</option>
+<option value="50">At least 50 plays</option>
+</select>
+</label>
+</div>
+<div class="table-caption">
+<p id="results" role="status" aria-live="polite">
+</p>
+<p>
+<a href="data.json">Table JSON</a> · <a href="header.json">Header</a>
+</p>
+</div>
 <p class="guide">Uses Mocha’s <strong>TOTAL CLEAR ÷ TOTAL PLAY</strong> percentage (the second RATE column). Each attempt counts, so repeat plays affect the rate. No usable statistics means “No data.” Small samples are marked; clear rate is a guide, not a difficulty guarantee.</p>
-<div class="table-wrap"><table><thead><tr><th>Clear rate</th><th>Song / chart</th><th>Clears / plays</th><th>Links</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" hidden>No charts match these filters.</p></section>
-<details class="usage"><summary>Add the folders to your player</summary><p>Add this page’s URL to your player’s difficulty-table settings and refresh. The table’s level folders are clear-rate bands: 90–100%, 80–under 90%, and so on. “No data” is last. Every chart retains its original hash and is ●11 in the source snapshot.</p><p>Browser filters do not change the imported table. Rates are a dated snapshot, not live updates. This page hosts metadata only; use the original package and chart links for playable files.</p></details>
-<footer><p>Sources: <a href="https://pmsdifficulty.xxxxxxxx.jp/insane_PMSdifficulty.html">PMS Database</a> · <a href="https://mocha-repository.info/">Mocha IR</a>. <a href="https://github.com/Sehun-Joo/pms11-clear-rate">Source, statistics and methodology</a>.</p><p>All level 11 records from the larger PMS Database are included, including records marked removed from its smaller curated counterpart. Original source comments remain on each chart. Mocha’s published per-play rate is used as supplied. Independent fan table.</p></footer></main></body></html>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Clear rate</th>
+<th>Song / chart</th>
+<th>Clears / plays</th>
+<th>Links</th>
+</tr>
+</thead>
+<tbody id="rows">
+</tbody>
+</table>
+</div>
+<p id="empty" hidden>No charts match these filters.</p>
+</section>
+<details class="usage">
+<summary>Add the folders to your player</summary>
+<p>Add this page’s URL to your player’s difficulty-table settings and refresh. The table’s level folders are clear-rate bands: 90–100%, 80–under 90%, and so on. “No data” is last. Every chart retains its original hash and is ●11 in the source snapshot.</p>
+<p>Browser filters do not change the imported table. Rates are a dated snapshot, not live updates. This page hosts metadata only; use the original package and chart links for playable files.</p>
+</details>
+<footer>
+<p>Sources: <a href="https://pmsdifficulty.xxxxxxxx.jp/insane_PMSdifficulty.html">PMS Database</a> · <a href="https://mocha-repository.info/">Mocha IR</a>. <a href="https://github.com/Sehun-Joo/pms11-clear-rate">Source, statistics and methodology</a>.</p>
+<p>All level 11 records from the larger PMS Database are included, including records marked removed from its smaller curated counterpart. Original source comments remain on each chart. Mocha’s published per-play rate is used as supplied. Independent fan table.</p>
+</footer>
+</main>
+</body>
+</html>
